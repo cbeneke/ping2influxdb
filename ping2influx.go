@@ -52,8 +52,6 @@ func ping() {
 }
 
 func write(addr *net.IPAddr, rtt time.Duration) {
-    fmt.Printf("ping to %s : %v\n", addr.String(), rtt)
-
     // Create a new point batch
     bp, err := client.NewBatchPoints(client.BatchPointsConfig{
         Database:  database,
