@@ -29,7 +29,7 @@ func init() {
     hostname = string(os.Args[1])
     pinger = fastping.NewPinger()
 
-    resolv()
+    resolve()
     pinger.OnRecv = write
 
     var err error
@@ -45,7 +45,7 @@ func init() {
     }
 }
 
-func resolv() {
+func resolve() {
     remoteaddr, err := net.ResolveIPAddr("ip4:icmp", hostname)
     if err != nil {
         fmt.Println(err)
@@ -66,7 +66,7 @@ func write(addr *net.IPAddr, rtt time.Duration) {
     if rtt == 0 {
 
         // Dont write zero-values
-        resolv()
+        resolve()
 
     } else {
 
