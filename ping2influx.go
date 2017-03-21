@@ -16,6 +16,7 @@ const (
     host = "http://127.0.0.1:8086"
     username = ""
     password = ""
+    resolve_after_count = 600
 )
 
 var (
@@ -105,7 +106,12 @@ func write(addr *net.IPAddr, rtt time.Duration) {
 }
 
 func main() {
+    cnt := 0
     for {
         ping()
+        if cnt++; cnt > resolve_after_count {
+            resolve()
+            cnt = 0
+        }
     }
 }
